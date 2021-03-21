@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Resume</title>
+  </head>
+  <body>
+    <h1><%= info.first_name %> <%= info.last_name %></h1>
+    <p><%= info.profession %></p>
+    <p>Address: <%= info.address %></p>
+    <p>E-mail: <%= info.email %></p>
+    <p>Github: <a href=<%= info.github %>><%= info.github %></a></p>
+
+    <hr>
+
+    <h2>Skills</h2>
+    <ul>
+      <%= for skill <- info.skills do %>
+        <li><%= skill %></li>
+      <% end %>
+    </ul>
+
+    <h2>Experience</h2>
+    <ul>
+      <%= for exp <- info.experience do %>
+        <div>
+          <em><%= exp.from %> - <%= exp.to %></em>
+          <p><%= exp.title %> at <a href=<%= exp.company_website %>><%= exp.company %></a></p>
+        </div>
+        <br>
+      <% end %>
+    </ul>
+
+    <h2>Education</h2>
+    <ul>
+      <%= for education <- info.education do %>
+        <div>
+          <em><%= education.from %> - <%= education.to %></em>
+          <p><%= education.degree %> in <%= education.field_of_study %>, <%= education.school %></p>
+        </div>
+      <% end %>
+    </ul>
+
+    <h2>Languages</h2>
+    <ul>
+      <%= for language <- info.languages do %>
+        <li><%= language %></li>
+      <% end %>
+    </ul>
+  </body>
+</html>

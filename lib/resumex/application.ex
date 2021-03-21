@@ -7,9 +7,13 @@ defmodule Resumex.Application do
 
   @impl true
   def start(_type, _args) do
+    port = Application.get_env(:resumex, :port)
+
     children = [
       # Starts a worker by calling: Resumex.Worker.start_link(arg)
       # {Resumex.Worker, arg}
+
+      {Plug.Cowboy, scheme: :http, plug: Resumex.Router, options: [port: port]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
