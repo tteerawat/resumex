@@ -35,7 +35,7 @@ defmodule Resumex.MyResume do
         title: "Software developer",
         company: "Omise",
         from: "Sep 2015",
-        to: "Mar 2020",
+        to: "Mar 2021",
         company_website: "https://www.omise.co/"
       },
       %{

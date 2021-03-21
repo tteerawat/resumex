@@ -43,7 +43,7 @@ defmodule Resumex.RouterTest do
                    "company" => "Omise",
                    "from" => "Sep 2015",
                    "title" => "Software developer",
-                   "to" => "Mar 2020",
+                   "to" => "Mar 2021",
                    "company_website" => "https://www.omise.co/"
                  },
                  %{
