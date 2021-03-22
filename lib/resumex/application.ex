@@ -6,20 +6,20 @@ defmodule Resumex.Application do
   use Application
 
   @impl true
-  def start(_type, _args) do
+  def start(_type, args) do
     port = Application.get_env(:resumex, :port)
 
-    children = [
-      # Starts a worker by calling: Resumex.Worker.start_link(arg)
-      # {Resumex.Worker, arg}
-
-      {Plug.Cowboy, scheme: :http, plug: Resumex.Router, options: [port: port]},
-      {Resumex.Counter, []}
-    ]
+    children =
+      [
+        {Plug.Cowboy, scheme: :http, plug: Resumex.Router, options: [port: port]}
+      ] ++ list_children_from_env(args[:env])
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Resumex.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  defp list_children_from_env(:test), do: []
+  defp list_children_from_env(_), do: [{Resumex.Counter, []}]
 end

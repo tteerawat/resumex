@@ -3,12 +3,19 @@ defmodule Resumex.RouterTest do
   use Plug.Test
 
   describe "GET /resume.html" do
-    test "returns resume response" do
+    setup do
+      pid = start_supervised!(Resumex.Counter)
+
+      {:ok, pid: pid}
+    end
+
+    test "returns resume response", %{pid: pid} do
       conn =
         :get
         |> conn("/resume.html")
         |> Resumex.Router.call([])
 
+      assert :sys.get_state(pid) == 1
       assert conn.status == 200
       assert Plug.Conn.get_resp_header(conn, "content-type") == ["text/html; charset=utf-8"]
       assert conn.resp_body =~ "<!DOCTYPE html>"
