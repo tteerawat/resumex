@@ -1,21 +1,6 @@
 # Resumex
 
-**TODO: Add description**
+[![Elixir CI](https://github.com/tteerawat/resumex/actions/workflows/ci.yml/badge.svg)](https://github.com/tteerawat/resumex/actions/workflows/ci.yml)
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `resumex` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:resumex, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/resumex](https://hexdocs.pm/resumex).
+My simple resume website 🍀
 
