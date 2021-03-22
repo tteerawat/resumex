@@ -9,7 +9,12 @@ defmodule Resumex.Router do
   @templates_folder "lib/resumex/templates"
 
   get "/resume.html" do
-    send_html_response(conn, 200, "resume.html.eex", info: MyResume.info())
+    visits_count = Resumex.Counter.count()
+
+    send_html_response(conn, 200, "resume.html.eex",
+      info: MyResume.info(),
+      visits_count: visits_count
+    )
   end
 
   get "/resume" do

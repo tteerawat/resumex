@@ -13,7 +13,8 @@ defmodule Resumex.Application do
       # Starts a worker by calling: Resumex.Worker.start_link(arg)
       # {Resumex.Worker, arg}
 
-      {Plug.Cowboy, scheme: :http, plug: Resumex.Router, options: [port: port]}
+      {Plug.Cowboy, scheme: :http, plug: Resumex.Router, options: [port: port]},
+      {Resumex.Counter, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
