@@ -9,14 +9,7 @@ defmodule Resumex.Router do
   @templates_folder "lib/resumex/templates"
 
   get "/resume.html" do
-    htlm_body =
-      @templates_folder
-      |> Path.join("resume.html.eex")
-      |> EEx.eval_file(info: MyResume.info())
-
-    conn
-    |> put_resp_header("content-type", "text/html; charset=utf-8")
-    |> send_resp(200, htlm_body)
+    send_html_response(conn, 200, "resume.html.eex", info: MyResume.info())
   end
 
   get "/resume" do
@@ -29,6 +22,18 @@ defmodule Resumex.Router do
       "code" => "not_found",
       "message" => "not found"
     })
+  end
+
+  defp send_html_response(conn, status, template, assigns)
+       when is_binary(template) and is_list(assigns) do
+    body =
+      @templates_folder
+      |> Path.join(template)
+      |> EEx.eval_file(assigns)
+
+    conn
+    |> put_resp_header("content-type", "text/html; charset=utf-8")
+    |> send_resp(status, body)
   end
 
   defp send_json_response(conn, status, data) when is_map(data) do
